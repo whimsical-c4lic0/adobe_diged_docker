@@ -29,7 +29,7 @@ fi
 
 for tag in $(echo $1 | sed 's/,/ /g'); do
     container=$(uuidgen)
-    docker create --name $container "adobe_diged_docker:$tag" sh run.sh >/dev/null
+    docker create --name $container -p 8080:8080 "adobe_diged_docker:$tag" sh run.sh >/dev/null
     docker cp "$2" $container:/app/in.acsm
     docker start $container >/dev/null
     uuids="$uuids $container"

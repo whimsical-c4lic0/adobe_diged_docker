@@ -1,16 +1,13 @@
 export DISPLAY=:0
 Xvfb :0 -screen 0 1024x768x24 &
 x11vnc -forever &
+websockify --web /usr/share/novnc 8080 localhost:5900 &
 
-export WINEARCH=win32
-
-winetricks -q corefonts
 winetricks -q windowscodecs
-winetricks -q dotnet35sp1
 winetricks -q python26
 
 wine pycrypto-2.6.1.win32-py2.6.exe
-wine ADE_2.0_Installer.exe
+wine ADE_4.5_Installer.exe
 
 while pgrep DigitalEditions >/dev/null; do sleep 1; done
 wineserver --kill
