@@ -6,7 +6,7 @@ websockify --web /usr/share/novnc 8080 localhost:5900 &
 wine "/app/.wine/drive_c/Program Files/Adobe/Adobe Digital Editions 4.5/DigitalEditions.exe" in.acsm &
 
 n=0
-while [ $n -lt 20 ]; do
+while [ $n -lt 90 ]; do
     sleep 1
     book=$(find "/app/.wine/drive_c/users/root/My Documents/My Digital Editions" -maxdepth 1 -type f ! -name welcome.epub | head -n 1)
     if [ -n "$book" ]; then
