@@ -24,8 +24,17 @@ container=$(uuidgen)
 docker run --name $container "adobe_diged_docker:$1" wine .wine/drive_c/Python26/python.exe adobekey.py
 if docker cp $container:/app/adobekey_1.der "${2:-.}/adobekey_$1.der"; then
     docker rm -f $container >/dev/null
-    exit 0
 else
     docker rm -f $container >/dev/null
     exit 1
 fi
+
+# Print out key in hex for use in dedrm.json
+if [ -f "${2:-.}/adobekey_$1.der" ]; then
+    hex_key=$(cat "${2:-.}/adobekey_$1.der" | hexdump -ve '/1 "%02x"')
+    echo "\"adeptkeys\": {"
+    echo "  \"adobekey_$1\": \"$hex_key\""
+    echo "}"
+fi
+
+exit 0
