@@ -1,7 +1,7 @@
 Adobe Digital Editions Dockerized
 =================================
 
-Runs Adobe Digital Editions 2.0.1 in a Docker container using Wine and automates
+Runs Adobe Digital Editions 4.5 in a Docker container using Wine and automates
 the downloading of e-books from ACSM files.
 
 Authorizing Adobe IDs
@@ -15,9 +15,8 @@ One might for example use the name of the person the Adobe ID belongs to.
     ./newid alice
 
 This will run a Docker container and install a fresh instance of Adobe Digital
-Editions inside. Open a VNC client of your choice
-([TigerVNC](https://tigervnc.org/) works) and connect to `localhost:5900`.
-When the script runs for the first time the Dockerfile is built before the VNC
+Editions inside. Open a web browser and connect to `localhost:8080`.
+When the script runs for the first time the Dockerfile is built before the novnc
 server starts. Be patient and retry connecting. Once you're connected you will
 likely be seeing a blackscreen. Wait for the Adobe Digital Editions installer to
 pop up and advance the installation. This should open up the application.
@@ -54,10 +53,3 @@ generated from an authorized Adobe Digital Editions installation.
 
 An optional second argument specifies the directory to put the generated key
 file and defaults to the current directory.
-
-Known Issues
-------------
-
-This was developed on Arch Linux and it turned out later it doesn't run on
-Debian 10. It will however work on Debian 11. My best guess is that it
-doesn't work with older kernels.
